@@ -7,7 +7,7 @@ router.get('/', (req, res) => {
 });
 
 // Add a beer.
-router.get('/add', (req, res) => {
+router.get('/add/:id', (req, res) => {
   res.send('Review add');
 });
 

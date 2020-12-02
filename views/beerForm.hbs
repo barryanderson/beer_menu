@@ -1,18 +1,25 @@
 <div class="row">
   <div class="col sm">
-    <form>
+
+    {{#each errors}}
+      <div class="error">
+        <p>{{text}}</p>
+      </div>
+    {{/each}}
+
+    <form action="/beer/add" method="POST">
       <div class="form-group">
         <label for="name">Name of Beer</label>
-        <input type="text" class="form-control" id="name" aria-describedby="name">
+        <input type="text" name="name" class="form-control" id="name" aria-describedby="name" value="{{name}}">
       </div>
       <div class="form-group">
         <label for="company">Manufacturer</label>
-        <input type="text" class="form-control" id="company" aria-describedby="company">
+        <input type="text" name="company" class="form-control" id="company" aria-describedby="company" value="{{company}}">
       </div>
       <div class="form-group">
         <label for="abv">ABV%</label>
         <div class="input-group">
-          <input type="number" class="form-control" id="inlineFormInputGroupUsername" placeholder="abv">
+          <input type="decimal" name="abv" class="form-control" id="inlineFormInputGroupUsername" placeholder="abv" value="{{abv}}">
           <div class="input-group-append">
             <div class="input-group-text">%</div>
           </div>

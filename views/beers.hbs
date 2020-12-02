@@ -6,9 +6,11 @@
 
 <div class="row">
   <div class="col sm">
-    + Add a beer
+    <a href="/beer/add">+ Add a beer</a>
   </div>
 </div>
+
+{{created}}
 
 <div class="row">
 
@@ -19,7 +21,8 @@
         <div class="card-body">
           <h5 class="card-title">{{abv}}</h5>
           <p class="card-text">{{company}}</p>
-          <a href="#" class="btn btn-primary">Submit a Review</a>
+          <a href="/review/add/{{id}}" class="btn btn-primary">Submit a Review</a>
+          <a href="/beer/remove/{{id}}" class="btn btn-secondary" onclick="return confirm('Are you sure?');">Remove Beer</a>
         </div>
       </div>
     </div>

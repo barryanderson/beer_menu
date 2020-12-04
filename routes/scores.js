@@ -53,7 +53,7 @@ function calculateTotalScores(beers) {
     beer.flavor = Math.round(flavor);
     beer.mouthfeel = Math.round(mouthfeel);
     beer.overall = Math.round(overall);
-    beer.totalScore = Math.round((branding + aroma + appearance + flavor + mouthfeel + overall)/6)*10;
+    beer.totalScore = Math.round((branding + aroma + appearance + flavor + mouthfeel + overall)/6);
   });
 
   return beers;

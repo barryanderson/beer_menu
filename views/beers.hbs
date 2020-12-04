@@ -27,6 +27,7 @@
            <a href="/beer/edit/{{id}}" class="btn btn-secondary">Edit Beer</a>
         </div>
         <div class="card-footer text-muted text-center">
+          <h6>{{reviewCount}} Review{{#compare reviewCount ">" 1}}s{{/compare}}</h6>
           <a href="/review/{{id}}">
           {{#if totalScore}}
             <div class="single-chart mx-auto text-center">

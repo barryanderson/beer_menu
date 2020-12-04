@@ -13,6 +13,7 @@ router.get('/', async (req, res) => {
         ['name', 'name'],
         ['company', 'company'],
         ['abv', 'abv'],
+        [db.sequelize.fn('COUNT', db.sequelize.col('beerId')), 'reviewCount'],
         [db.sequelize.fn('ROUND', db.sequelize.fn('AVG', db.sequelize.col('branding')), 2), 'branding'],
         [db.sequelize.fn('ROUND', db.sequelize.fn('AVG', db.sequelize.col('aroma')), 2), 'aroma'],
         [db.sequelize.fn('ROUND', db.sequelize.fn('AVG', db.sequelize.col('appearance')), 2), 'appearance'],

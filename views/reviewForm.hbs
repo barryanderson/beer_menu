@@ -1,1 +1,86 @@
-{{name}}
+<div class="row">
+  <div class="col sm">
+    <h1>Review {{beer.name}} ({{beer.abv}}%)</h1>
+    <h6>from {{beer.company}}</h6>
+  </div>
+</div>
+<div class="row">
+  <div class="col sm">
+    <form action="/review/add/{{beer.id}}" method="POST" class="needs-validation"  autocomplete="off" novalidate>
+      <div class="form-group d-none">
+        <input type="text" name="id" class="form-control" id="id" aria-describedby="id" value="{{id}}">
+      </div>
+      <div class="row">
+        <div class="form-group col-md-12">
+          <label for="judgeName">Judge Name</label>
+          <input type="text" name="judgeName" class="form-control {{errors.judgeName}}" id="judgeName" aria-describedby="judgeName" value="{{judgeName}}" required>
+          <div class="invalid-feedback">You must supply your name.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="branding">Branding</label>
+          <input type="number" name="branding" class="form-control {{errors.judgeName}}" id="branding" aria-describedby="branding" value="{{branding}}" min="0" max="10" required>
+          <div class="invalid-feedback">Score between 0 and 10.</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="aroma">Aroma</label>
+          <input type="number" name="aroma" class="form-control {{errors.aroma}}" id="aroma" aria-describedby="aroma" value="{{aroma}}" min="0" max="10" required>
+          <div class="invalid-feedback">Score between 0 and 10.</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="appearance">Appearance</label>
+          <input type="number" name="appearance" class="form-control {{errors.appearance}}" id="appearance" aria-describedby="appearance" value="{{appearance}}" min="0" max="10" required>
+          <div class="invalid-feedback">Score between 0 and 10.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="flavor">Flavor</label>
+          <input type="number" name="flavor" class="form-control {{errors.flavor}}" id="flavor" aria-describedby="flavor" value="{{flavor}}" min="0" max="10" required>
+          <div class="invalid-feedback">Score between 0 and 10.</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="mouthfeel">Mouthfeel</label>
+          <input type="number" name="mouthfeel" class="form-control {{errors.mouthfeel}}" id="mouthfeel" aria-describedby="mouthfeel" value="{{mouthfeel}}" min="0" max="10" required>
+          <div class="invalid-feedback">Score between 0 and 10.</div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="overall">Overall Feel</label>
+          <input type="number" name="overall" class="form-control {{errors.overall}}" id="overall" aria-describedby="overall" value="{{overall}}" min="0" max="10" required>
+          <div class="invalid-feedback">Score between 0 and 10.</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          {{#if id}}<a href="/review/remove/{{id}}" class="btn btn-secondary float-right" onclick="return confirm('Are you sure?');">Remove Review</a>{{/if}}
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<script>
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.getElementsByClassName('needs-validation');
+    console.log()
+    // Loop over them and prevent submission
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+</script>

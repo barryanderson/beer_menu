@@ -10,20 +10,23 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Review.belongsTo(models.Beer);
+      this.belongsTo(models.Beer, {foreignKey: 'beerId'});
     }
   };
   Review.init({
-    beerId: DataTypes.INTEGER,
     judgeName: DataTypes.STRING,
     branding: DataTypes.INTEGER,
     aroma: DataTypes.INTEGER,
     appearance: DataTypes.INTEGER,
     flavor: DataTypes.INTEGER,
     mouthfeel: DataTypes.INTEGER,
-    overall: DataTypes.INTEGER
+    overall: DataTypes.INTEGER,
+    beerId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
-    sequelize,
+    sequelize: sequelize,
     modelName: 'Review',
   });
   return Review;

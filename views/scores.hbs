@@ -1,0 +1,126 @@
+<div class="row">
+  <div class="col sm">
+    <h1>Beer Scores</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">Current Top Beer</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Beer: {{beers.0.name}}</li>
+          <li class="list-group-item">Company: {{beers.0.company}}</li>
+          <li class="list-group-item">ABV: {{beers.0.abv}}%</li>
+        </ul>
+        <div class="text-muted text-center">
+          <canvas id="numberOne"></canvas>
+        </div>
+      </div>
+    </div>
+</div>
+
+<div class="row">
+{{#each beers}}
+  {{#if @first}}
+  {{else}}
+    <div class="col-sm-12 col-md-6 col-lg-4">
+      <div class="card mb-4">
+        <div class="card-header">
+          <h5 class="card-title">{{name}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Company: {{company}}</li>
+          <li class="list-group-item">ABV: {{abv}}%</li>
+        </ul>
+        <div class="card-footer text-muted text-center">
+          <div class="single-chart mx-auto text-center">
+              <h6>Total Score</h6>
+              <svg viewBox="0 0 36 36" class="circular-chart blue">
+                <path class="circle-bg"
+                  d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <path class="circle"
+                  stroke-dasharray="{{totalScore}}, 100"
+                  d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"
+                />
+                <text x="18" y="20.35" class="percentage">{{totalScore}}%</text>
+              </svg>
+            </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+{{else}}
+  <div class="col-sm text-center">
+    <h1>No Scores</h1>
+  </div>
+{{/each}}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+<script>
+  var ctx = document.getElementById('numberOne');
+  var myChart = new Chart(ctx, {
+    type: 'horizontalBar',
+    data: {
+        labels: ['Branding', 'Aroma', 'Appearance', 'Flavor', 'Mouthfeel', 'Overall Feel', 'Total Score'],
+        datasets: [{
+            label: 'Avg. score out of 10',
+            barPercentage: 1,
+            barThickness: 25,
+            data: [
+              {{beers.0.branding}},
+              {{beers.0.aroma}},
+              {{beers.0.appearance}},
+              {{beers.0.flavor}},
+              {{beers.0.mouthfeel}},
+              {{beers.0.overall}},
+              {{beers.0.totalScore}}
+            ],
+            backgroundColor: [
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+            ],
+            borderColor: [
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(54, 162, 235, 1)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }],
+            xAxes: [{
+              ticks: {
+                    beginAtZero: true,
+                    steps: 100,
+                    stepValue: 1,
+                    max: 10
+                }
+            }]
+        }
+    }
+  });
+</script>

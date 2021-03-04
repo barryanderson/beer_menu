@@ -1,7 +1,7 @@
 <div class="row mb-4">
   <div class="col sm">
-    <h1>{{beer.name}} Reviews</h1>
-    <h6>{{beer.company}}</h6>
+    <h1>{{beer.name}} ({{beer.abv}}%) Reviews</h1>
+    <h6>from {{beer.company}}</h6>
   </div>
 </div>
 
@@ -63,7 +63,7 @@
     </div>
   {{else}}
     <div class="col-sm text-center">
-      <h1>No Reviews</h1>
+      <h1 class="light-text">No Reviews</h1>
     </div>
   {{/each}}
 </div>

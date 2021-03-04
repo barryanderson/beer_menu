@@ -7,10 +7,8 @@ const path = require('path');
 const app = express();
 const multihelpers = hbshelpers();
 
-
 // const {sequelize} = require('./models');
 // sequelize.sync({force: true});
-
 
 // Set handlebar engine.
 app.engine('.hbs', exphbs({defaultLayout: 'main', extname: '.hbs', helpers: multihelpers, runtimeOptions: {allowProtoPropertiesByDefault: true, allowProtoMethodsByDefault: true}}));

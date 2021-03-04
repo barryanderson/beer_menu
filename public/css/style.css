@@ -2,7 +2,9 @@
   margin-top: 2em;
 }
 
-
+.light-text {
+  color: #dddddd;
+}
 
 .flex-wrapper {
   display: flex;
